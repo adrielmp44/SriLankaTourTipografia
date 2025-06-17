@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Explore o Sri Lanka em 360° - TPIF</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #004D40; /* Verde escuro - Natureza exuberante */
+            --secondary-color: #FFB300; /* Dourado - Templos e riqueza cultural */
+            --accent-color: #BF360C; /* Terracota - Arquitetura antiga, terra */
+            --text-color-light: #F5F5F5; /* Branco suave para contraste */
+            --text-color-dark: #212121; /* Preto/Cinza escuro para legibilidade */
+            --background-gradient-start: #E0F2F7; /* Azul celeste claro */
+            --background-gradient-end: #C8E6C9;   /* Verde claro da paisagem */
+            --button-shadow-light: rgba(0, 0, 0, 0.15);
+            --button-shadow-hover: rgba(0, 0, 0, 0.3);
+            --border-radius-main: 15px;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, var(--background-gradient-start) 0%, var(--background-gradient-end) 100%);
+            color: var(--text-color-dark);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between; /* Distribui espaço verticalmente */
+            align-items: center;
+            min-height: 100vh; /* Garante que o body ocupe toda a altura da tela */
+            text-align: center;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: var(--primary-color);
+            color: var(--text-color-light);
+            padding: 50px 20px; /* Mais padding para espaçamento */
+            width: 100%;
+            box-shadow: 0 6px 15px var(--button-shadow-hover);
+            margin-bottom: 50px; /* Mais espaço abaixo do header */
+            position: relative;
+            z-index: 2;
+        }
+
+        header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 4em; /* Fonte maior */
+            margin: 0 0 15px 0;
+            letter-spacing: 3px; /* Mais espaçamento entre letras */
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.4); /* Sombra mais forte */
+            font-weight: 700;
+        }
+
+        header p {
+            font-size: 1.3em; /* Fonte maior */
+            margin-top: 15px;
+            max-width: 850px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.8;
+            opacity: 0.9;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1280px; /* Largura máxima ligeiramente maior */
+            margin-bottom: 60px; /* Mais espaço acima do footer */
+            flex-grow: 1; /* Permite que o container de botões cresça e ocupe o espaço disponível */
+            display: flex; /* Para centralizar o grid de botões */
+            justify-content: center;
+            align-items: center;
+        }
+
+        .button-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Botões um pouco maiores */
+            gap: 30px; /* Mais espaçamento entre botões */
+            justify-content: center;
+            align-items: stretch;
+            width: 100%;
+            padding: 20px; /* Padding interno para o grid */
+        }
+
+        .tour-button {
+            background-color: var(--secondary-color);
+            color: var(--text-color-dark);
+            padding: 25px; /* Mais padding interno */
+            border: none;
+            border-radius: var(--border-radius-main);
+            font-size: 1.4em; /* Fonte maior */
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1); /* Transição mais suave e complexa */
+            box-shadow: 0 8px 16px var(--button-shadow-light); /* Sombra inicial mais suave */
+            text-decoration: none;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            line-height: 1.5;
+            position: relative;
+            overflow: hidden;
+            transform-style: preserve-3d;
+        }
+
+        .tour-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.4) 50%, rgba(255, 255, 255, 0) 100%); /* Efeito de brilho mais elaborado */
+            transform: translateX(-100%) skewX(-45deg); /* Ângulo de inclinação ajustado */
+            transition: transform 0.6s ease-out;
+            z-index: 0;
+        }
+
+        .tour-button:hover::before {
+            transform: translateX(100%) skewX(-45deg);
+        }
+
+        .tour-button:hover {
+            background-color: var(--accent-color);
+            color: var(--text-color-light);
+            transform: translateY(-10px) scale(1.02); /* Levanta e cresce um pouco */
+            box-shadow: 0 15px 30px var(--button-shadow-hover); /* Sombra mais pronunciada */
+            border: 2px solid var(--text-color-light); /* Borda no hover */
+        }
+
+        .tour-button span {
+            position: relative;
+            z-index: 1; /* Garante que o texto fique acima do efeito de brilho */
+        }
+
+        .tour-button span:last-child { /* Para o texto de "(Tour 360°)" */
+            font-size: 0.75em;
+            opacity: 0.7;
+            margin-top: 5px;
+            font-weight: 400;
+        }
+
+        footer {
+            margin-top: 50px;
+            padding: 30px 20px; /* Mais padding no footer */
+            width: 100%;
+            background-color: var(--primary-color);
+            color: var(--text-color-light);
+            font-size: 1em;
+            box-shadow: 0 -6px 15px var(--button-shadow-hover);
+            line-height: 1.6;
+        }
+
+        footer p {
+            margin: 0;
+            padding: 5px 0;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        footer p:first-child {
+            font-weight: 700;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+        footer p:last-child {
+            font-size: 0.9em;
+            opacity: 0.8;
+            margin-top: 15px;
+        }
+
+
+        /* Responsive adjustments */
+        @media (max-width: 1024px) {
+            header h1 {
+                font-size: 3.5em;
+            }
+            header p {
+                font-size: 1.1em;
+            }
+            .tour-button {
+                font-size: 1.2em;
+                padding: 20px;
+            }
+            .button-grid {
+                gap: 20px;
+            }
+        }
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.8em;
+            }
+            header p {
+                font-size: 1em;
+            }
+            .tour-button {
+                font-size: 1.1em;
+                padding: 18px;
+            }
+            .button-grid {
+                grid-template-columns: 1fr; /* Uma coluna em telas menores */
+            }
+            header, footer {
+                padding: 30px 15px;
+            }
+        }
+        @media (max-width: 480px) {
+            header h1 {
+                font-size: 2.2em;
+                letter-spacing: 1px;
+            }
+            .tour-button {
+                font-size: 1em;
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Bem-vindo ao Coração do Sri Lanka!</h1>
+        <p>Explore a rica história, a natureza exuberante e a espiritualidade de Sri Lanka através de nossos tours virtuais em 360°. Mergulhe na cultura e na beleza natural, clicando nos botões abaixo para uma experiência imersiva!</p>
+    </header>
+
+    <div class="container">
+        <div class="button-grid">
+            <a href="https://www.360view.lk/vtour/polonnaruwanelumpokuna/" target="_blank" class="tour-button">
+                <span>Polonnaruwa - Nelum Pokuna</span>
+                <span>(Tour 360°)</span>
+            </a>
+
+            <a href="https://www.360view.lk/vtour/dambulla/" target="_blank" class="tour-button">
+                <span>Dambulla - Cavernas do Templo Dourado</span>
+                <span>(Tour 360°)</span>
+            </a>
+
+            <a href="https://www.360view.lk/vtour/parakramabahupalace/" target="_blank" class="tour-button">
+                <span>Palácio de Parakramabahu</span>
+                <span>(Tour 360°)</span>
+            </a>
+
+            <a href="https://360view.lk/vtour/kadadoraviharaya/" target="_blank" class="tour-button">
+                <span>Kadadora Viharaya</span>
+                <span>(Tour 360°)</span>
+            </a>
+
+            <a href="https://360view.lk/vtour/jethavanamuseum/" target="_blank" class="tour-button">
+                <span>Jethavana Museum</span>
+                <span>(Tour 360°)</span>
+            </a>
+
+            <a href="https://360view.lk/vtour/dematamalviharaya/" target="_blank" class="tour-button">
+                <span>Dematamal Viharaya</span>
+                <span>(Tour 360°)</span>
+            </a>
+
+            <a href="https://360view.lk/vtour/gadaladeniya/" target="_blank" class="tour-button">
+                <span>Templo Gadaladeniya</span>
+                <span>(Tour 360°)</span>
+            </a>
+
+            <a href="https://360view.lk/vtour/jethawanaramaya/" target="_blank" class="tour-button">
+                <span>Jethawanaramaya Stupa</span>
+                <span>(Tour 360°)</span>
+            </a>
+
+            <a href="https://360view.lk/vtour/lankathilaka/" target="_blank" class="tour-button">
+                <span>Lankathilaka Viharaya</span>
+                <span>(Tour 360°)</span>
+            </a>
+            
+        </div>
+    </div>
+
+    <footer>
+        <p>Este projeto foi desenvolvido como parte de um trabalho acadêmico para a disciplina de Tipografia, uma apresentação para o curso de Design Digital na Universidade Federal do Ceará (UFC), Campus Quixadá.</p>
+        <p>Conteúdo referente ao Sri Lanka via 360View.lk. Professor: Tarcisio. Quixadá, Ceará, Brasil - Junho de 2025.</p>
+    </footer>
+
+</body>
+</html>
